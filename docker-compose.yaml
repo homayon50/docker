@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+ frontend:
+  build: api-frontend/.
+  ports:
+   - "8000:8000"
+  restart: unless-stopped
+  depends_on:
+   - backend
+  networks:
+   - frontend
+   - backend
+
+ backend:
+  build: api-backend/.
+  ports:
+   - "8001:8001"
+  restart: unless-stopped
+  networks:
+   - backend
+   - frontend
+
+networks:
+  frontend:
+   #driver: bridge
+  backend:
+   #driver: bridge
